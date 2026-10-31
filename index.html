@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ro" class="scroll-smooth" style="background-color: #080D16;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOGDAN CIUFU — Portfolio & Online CV</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Three.js for 3D Vinyl & Projector -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    
+    <!-- GSAP for Smooth Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bgMain: '#080D16',
+                        bgSec: '#111D2C',
+                        cyanAccent: '#55D6FF',
+                        textSec: '#AFC4D9',
+                        textMain: '#F2F6FC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'cyanGlow': '0 0 25px rgba(85, 214, 255, 0.25)',
+                        'cyanGlowIntense': '0 0 40px rgba(85, 214, 255, 0.45)',
+                        'cardGlow': '0 10px 30px -10px rgba(85, 214, 255, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyanAccent selection:text-bgMain bg-[#080D16] text-[#F2F6FC]">
+
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-bgSec/80 px-4 lg:px-12 py-3 lg:py-4 transition-all">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+            <!-- Logo -->
+            <a href="#profile" onclick="switchPage('profile')" class="flex items-center gap-2 lg:gap-3 group cursor-pointer shrink-0">
+                <div class="w-8 h-8 lg:w-9 lg:h-9 rounded-xl bg-bgSec border border-cyanAccent/40 flex items-center justify-center text-cyanAccent font-bold text-xs lg:text-sm group-hover:shadow-cyanGlow transition-all">
+                    BC
+                </div>
+                <!-- Ascundem textul pe telefon pentru a nu aglomera -->
+                <div class="hidden sm:block">
+                    <span class="text-sm lg:text-lg font-bold tracking-wider text-textMain group-hover:text-cyanAccent transition-colors">BOGDAN CIUFU</span>
+                    <span class="block text-[9px] lg:text-[10px] uppercase tracking-widest text-textSec">Engineering & IT</span>
+                </div>
+            </a>
+
+            <!-- Navigation Tabs -->
+            <nav class="flex items-center gap-1 lg:gap-2 bg-bgMain/90 p-1 lg:p-1.5 rounded-full border border-bgSec">
+                <button id="nav-btn-profile" onclick="switchPage('profile')" class="px-3 lg:px-5 py-1.5 lg:py-2 rounded-full text-[10px] lg:text-xs font-semibold uppercase tracking-wider transition-all duration-300 text-bgMain bg-cyanAccent shadow-cyanGlow whitespace-nowrap">
+                    Profile
+                </button>
+                <button id="nav-btn-journey" onclick="switchPage('journey')" class="px-3 lg:px-5 py-1.5 lg:py-2 rounded-full text-[10px] lg:text-xs font-semibold uppercase tracking-wider transition-all duration-300 text-textSec hover:text-textMain whitespace-nowrap">
+                    Journey
+                </button>
+            </nav>
+
+            <!-- Quick Contact Badge (Ascuns pe mobil) -->
+            <a href="mailto:bogdanciufu200402@gmail.com" class="hidden md:flex items-center gap-2 text-xs text-textSec hover:text-cyanAccent transition-colors bg-bgSec/80 px-3.5 py-1.5 rounded-lg border border-bgSec shrink-0">
+                <i data-lucide="mail" class="w-3.5 h-3.5 text-cyanAccent"></i>
+                <span class="hidden lg:block">Contact</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow pt-20 lg:pt-24 pb-12 relative overflow-hidden">
+
+        <!-- PAGE 1: PERSONAL PROFILE -->
+        <section id="page-profile" class="transition-opacity duration-500 min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-120px)] flex items-center relative">
+            
+            <!-- BACKGROUND IMAGE CONTAINER -->
+            <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                <img src="./PAG1.jpg" alt="Workspace Background" class="absolute inset-0 w-full h-full object-cover opacity-70 filter blur-[2px] scale-105 transition-all duration-700" onerror="this.style.opacity='0'">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#080D16]/90 to-[#080D16]/50"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 lg:px-12 w-full py-8 lg:py-6 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                    
+                    <!-- LEFT COLUMN: Portrait & 3D Vinyl Player -->
+                    <div class="lg:col-span-5 relative flex justify-center w-full">
+                        <div class="relative w-full max-w-[320px] sm:max-w-sm lg:max-w-md group">
+                            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyanAccent/30 to-bgSec opacity-50 group-hover:opacity-100 blur-lg transition duration-700"></div>
+                            
+                            <!-- Main Portrait Box -->
+                            <div class="relative rounded-3xl overflow-hidden bg-bgSec border border-bgSec shadow-2xl">
+                                <div class="relative w-full aspect-[4/5] bg-gradient-to-b from-bgSec via-[#16253b] to-bgMain flex flex-col justify-end p-6 overflow-hidden">
+                                    
+                                    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#55D6FF_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyanAccent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                                    <!-- POZA DE PROFIL -->
+                                    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center py-8">
+                                        <div class="w-28 h-28 lg:w-32 lg:h-32 rounded-full bg-gradient-to-tr from-bgMain to-bgSec border-2 border-cyanAccent/50 p-1 flex items-center justify-center shadow-cyanGlow mb-4 overflow-hidden">
+                                            <img src="./Profil.jpeg" alt="Bogdan Ciufu" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <h3 class="text-lg lg:text-xl font-bold text-textMain tracking-wide">BOGDAN CIUFU</h3>
+                                        <p class="text-[10px] lg:text-xs text-cyanAccent uppercase tracking-widest mt-1 font-semibold">Student & Developer</p>
+                                        <p class="text-[10px] lg:text-[11px] text-textSec mt-2 max-w-[220px]">Ploiești & București, România</p>
+                                    </div>
+
+                                    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-bgMain via-bgMain/60 to-transparent pointer-events-none"></div>
+                                </div>
+
+                                <!-- 3D VINYL PLAYER OVERLAY -->
+                                <div class="absolute bottom-2 right-2 lg:bottom-4 lg:right-4 z-20 glass-panel p-2 lg:p-3 rounded-2xl flex items-center gap-2 lg:gap-3 shadow-2xl border border-cyanAccent/30 max-w-[250px] lg:max-w-[280px] scale-90 lg:scale-100 origin-bottom-right">
+                                    
+                                    <div class="relative w-12 h-12 lg:w-16 lg:h-16 shrink-0 rounded-full bg-bgMain border border-cyanAccent/40 overflow-hidden flex items-center justify-center shadow-md">
+                                        <canvas id="vinyl-canvas" class="w-full h-full cursor-pointer" title="Click to Toggle Rotation"></canvas>
+                                    </div>
+
+                                    <div class="flex-grow min-w-0">
+                                        <div class="flex items-center justify-between mb-1">
+                                            <span class="text-[9px] lg:text-[10px] font-semibold uppercase tracking-wider text-cyanAccent truncate block max-w-[80px] lg:max-w-[110px]">2Pac</span>
+                                            <div id="eq-graphic" class="flex items-center gap-0.5 paused">
+                                                <div class="eq-bar"></div>
+                                                <div class="eq-bar"></div>
+                                                <div class="eq-bar"></div>
+                                                <div class="eq-bar"></div>
+                                            </div>
+                                        </div>
+
+                                        <p class="text-[10px] lg:text-[11px] text-textMain font-medium truncate">All Eyez On Me</p>
+                                        
+                                        <div class="w-full bg-bgMain h-1 lg:h-1.5 rounded-full mt-1.5 lg:mt-2 cursor-pointer overflow-hidden border border-bgSec" id="audio-progress-container">
+                                            <div id="audio-progress-bar" class="bg-cyanAccent h-full w-0 rounded-full transition-all duration-100"></div>
+                                        </div>
+
+                                        <div class="flex items-center justify-between mt-1.5 lg:mt-2">
+                                            <span id="audio-time" class="text-[8px] lg:text-[9px] text-textSec font-mono">0:00</span>
+                                            <button id="play-pause-btn" onclick="toggleAudio()" class="w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-cyanAccent text-bgMain flex items-center justify-center hover:scale-110 transition-transform shadow-cyanGlow">
+                                                <i data-lucide="play" class="w-3 h-3 lg:w-3.5 lg:h-3.5 fill-bgMain ml-0.5" id="play-icon"></i>
+                                                <i data-lucide="pause" class="w-3 h-3 lg:w-3.5 lg:h-3.5 fill-bgMain hidden" id="pause-icon"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: About Me & Personal Details -->
+                    <div class="lg:col-span-7 space-y-5 lg:space-y-6">
+                        
+                        <div class="text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyanAccent/10 border border-cyanAccent/30 text-cyanAccent text-[10px] lg:text-xs font-semibold tracking-wider uppercase mb-3 backdrop-blur-md">
+                                <span class="w-1.5 h-1.5 rounded-full bg-cyanAccent animate-pulse"></span>
+                                Personal Profile
+                            </div>
+                            <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-textMain">
+                                BOGDAN <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyanAccent to-blue-400 glow-text">CIUFU</span>
+                            </h1>
+                            <h2 class="text-sm sm:text-base lg:text-xl font-medium text-textSec mt-2">
+                                Engineering & IT Student @ Politehnica University of Bucharest
+                            </h2>
+                        </div>
+
+                        <div class="glass-panel p-4 lg:p-6 rounded-2xl border-l-4 border-l-cyanAccent relative shadow-lg">
+                            <h3 class="text-[10px] lg:text-xs uppercase tracking-widest text-cyanAccent font-bold mb-2">About Me</h3>
+                            <p class="text-textMain text-xs sm:text-sm lg:text-base leading-relaxed font-light">
+                                "Passionate and proactive individual committed to achieving excellence in the field of engineering and IT. Seeking to apply strong programming skills, problem-solving abilities, and effective communication talents to drive innovation and deliver outstanding results in dynamic project environments."
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
+                            
+                            <div class="glass-panel p-4 lg:p-6 rounded-xl space-y-2 hover:border-cyanAccent/40 transition-colors">
+                                <div class="flex items-center gap-2 text-cyanAccent">
+                                    <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                                    <h4 class="text-[10px] lg:text-xs font-bold uppercase tracking-wider">Education Highlights</h4>
+                                </div>
+                                <ul class="text-[11px] lg:text-xs text-textSec space-y-1.5">
+                                    <li><strong class="text-textMain">UPB:</strong> Faculty of Industrial Engineering & Robotics (2023–Present)</li>
+                                    <li><strong class="text-textMain">Carmen Sylva:</strong> High School Diploma + Piano Certification (2023)</li>
+                                </ul>
+                            </div>
+
+                            <div class="glass-panel p-4 lg:p-6 rounded-xl space-y-2 hover:border-cyanAccent/40 transition-colors">
+                                <div class="flex items-center gap-2 text-cyanAccent">
+                                    <i data-lucide="code" class="w-4 h-4"></i>
+                                    <h4 class="text-[10px] lg:text-xs font-bold uppercase tracking-wider">Technical Skills</h4>
+                                </div>
+                                <div class="flex flex-wrap gap-1.5 pt-1">
+                                    <span class="px-2 py-0.5 rounded bg-bgMain border border-cyanAccent/30 text-[10px] lg:text-[11px] text-cyanAccent">Python</span>
+                                    <span class="px-2 py-0.5 rounded bg-bgMain border border-cyanAccent/30 text-[10px] lg:text-[11px] text-cyanAccent">Java</span>
+                                    <span class="px-2 py-0.5 rounded bg-bgMain border border-cyanAccent/30 text-[10px] lg:text-[11px] text-cyanAccent">JavaScript</span>
+                                    <span class="px-2 py-0.5 rounded bg-bgMain border border-cyanAccent/30 text-[10px] lg:text-[11px] text-cyanAccent">HTML/CSS</span>
+                                    <span class="px-2 py-0.5 rounded bg-bgMain border border-bgSec text-[10px] lg:text-[11px] text-textSec">Facial Recognition</span>
+                                </div>
+                            </div>
+
+                            <div class="glass-panel p-4 lg:p-6 rounded-xl space-y-2 hover:border-cyanAccent/40 transition-colors">
+                                <div class="flex items-center gap-2 text-cyanAccent">
+                                    <i data-lucide="music" class="w-4 h-4"></i>
+                                    <h4 class="text-[10px] lg:text-xs font-bold uppercase tracking-wider">Interests & Hobbies</h4>
+                                </div>
+                                <p class="text-[11px] lg:text-xs text-textSec leading-relaxed">
+                                    Piano Performance, Hiking, PC Gaming, Listening to Music, Reading Books & Travelling.
+                                </p>
+                            </div>
+
+                            <div class="glass-panel p-4 lg:p-6 rounded-xl space-y-2 hover:border-cyanAccent/40 transition-colors">
+                                <div class="flex items-center gap-2 text-cyanAccent">
+                                    <i data-lucide="user-check" class="w-4 h-4"></i>
+                                    <h4 class="text-[10px] lg:text-xs font-bold uppercase tracking-wider">Details & Languages</h4>
+                                </div>
+                                <div class="text-[11px] lg:text-xs text-textSec space-y-1">
+                                    <p><strong class="text-textMain">Languages:</strong> English (Fluent), Romanian (Native)</p>
+                                    <p><strong class="text-textMain">Driving License:</strong> Category B</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="pt-2 flex items-center justify-center lg:justify-start">
+                            <button onclick="switchPage('journey')" class="w-full lg:w-auto justify-center px-6 py-3 rounded-xl bg-cyanAccent text-bgMain font-bold text-[10px] lg:text-xs uppercase tracking-wider hover:shadow-cyanGlow hover:scale-105 transition-all flex items-center gap-2 group">
+                                <span>Explore Professional Journey</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: PROFESSIONAL JOURNEY -->
+        <section id="page-journey" class="hidden opacity-0 transition-opacity duration-500 min-h-screen relative">
+            
+            <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                <img src="./PAG2.jpg" alt="Mountain Landscape Background" class="absolute inset-0 w-full h-full object-cover filter blur-[1px] scale-105 transition-all duration-700" onerror="this.style.opacity='0'">
+                <div class="absolute inset-0 bg-[#080D16]/80"></div>
+            </div>
+
+            <div class="fixed inset-0 z-10 pointer-events-none overflow-hidden">
+                <canvas id="projector-canvas" class="w-full h-full opacity-90"></canvas>
+            </div>
+
+            <!-- Content Area (Centered on mobile, aligned right on desktop) -->
+            <div class="max-w-7xl mx-auto px-4 lg:px-12 py-16 lg:py-24 relative z-20 flex flex-col items-center lg:items-end">
+                
+                <div class="w-full lg:w-1/2 xl:w-5/12">
+                    <div class="text-center lg:text-left mb-10 lg:mb-16">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyanAccent/10 border border-cyanAccent/30 text-cyanAccent text-[10px] lg:text-xs font-semibold tracking-wider uppercase mb-3 backdrop-blur-md">
+                            <i data-lucide="projector" class="w-3.5 h-3.5"></i>
+                            Interactive Beam Projection
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-textMain tracking-tight drop-shadow-lg">
+                            PROFESSIONAL <span class="text-cyanAccent glow-text">JOURNEY</span>
+                        </h2>
+                        <p class="text-xs sm:text-sm text-textSec mt-2 font-medium">
+                            Projected timeline of academic achievements, volunteering, and specialized technical skill development.
+                        </p>
+                    </div>
+
+                    <!-- Am redus spatiul pe mobil (space-y-16) si l-am pastrat pe desktop (lg:space-y-32) -->
+                    <div class="space-y-16 lg:space-y-32 pb-16 lg:pb-32" id="journey-cards-container">
+                        
+                        <div class="journey-card glass-panel p-5 lg:p-8 rounded-2xl transition-colors duration-300">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-cyanAccent/10 border border-cyanAccent/40 flex items-center justify-center text-cyanAccent shrink-0 shadow-cyanGlow">
+                                        <i data-lucide="building-2" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base lg:text-lg font-bold text-textMain leading-tight">Politehnica University of Bucharest</h3>
+                                        <p class="text-[10px] lg:text-xs text-cyanAccent font-medium mt-1">Faculty of Industrial Engineering & Robotics</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 lg:px-3 py-1 rounded-full bg-bgMain border border-cyanAccent/30 text-[9px] lg:text-[11px] font-mono text-cyanAccent shrink-0">
+                                    Oct 2023 – Present
+                                </span>
+                            </div>
+                            <p class="text-xs lg:text-sm text-textSec leading-relaxed mt-3">
+                                Enrolled in degree program focusing on robotics engineering, manufacturing systems, automation principles, computer programming, mathematics, and physics.
+                            </p>
+                        </div>
+
+                        <div class="journey-card glass-panel p-5 lg:p-8 rounded-2xl transition-colors duration-300">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-cyanAccent/10 border border-cyanAccent/40 flex items-center justify-center text-cyanAccent shrink-0 shadow-cyanGlow">
+                                        <i data-lucide="music" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base lg:text-lg font-bold text-textMain leading-tight">Art College "Carmen Sylva" Ploiești</h3>
+                                        <p class="text-[10px] lg:text-xs text-cyanAccent font-medium mt-1">High School Diploma & Piano Certification</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 lg:px-3 py-1 rounded-full bg-bgMain border border-bgSec text-[9px] lg:text-[11px] font-mono text-textSec shrink-0">
+                                    Graduated 2023
+                                </span>
+                            </div>
+                            <p class="text-xs lg:text-sm text-textSec leading-relaxed mt-3">
+                                Completed high school education with double specialization: academic curriculum alongside formal musical qualification for piano performance, instilling deep discipline and attention to detail.
+                            </p>
+                        </div>
+
+                        <div class="journey-card glass-panel p-5 lg:p-8 rounded-2xl transition-colors duration-300">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-cyanAccent/10 border border-cyanAccent/40 flex items-center justify-center text-cyanAccent shrink-0 shadow-cyanGlow">
+                                        <i data-lucide="users" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base lg:text-lg font-bold text-textMain leading-tight">UPB Bucharest Volunteering</h3>
+                                        <p class="text-[10px] lg:text-xs text-cyanAccent font-medium mt-1">Extra-curricular Activities & Event Support</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 lg:px-3 py-1 rounded-full bg-bgMain border border-bgSec text-[9px] lg:text-[11px] font-mono text-textSec shrink-0">
+                                    Oct 2023 – Jan 2024
+                                </span>
+                            </div>
+                            <p class="text-xs lg:text-sm text-textSec leading-relaxed mt-3">
+                                Engaged in student community initiatives, event planning, and collaborative projects, applying effective communication and problem-solving abilities.
+                            </p>
+                        </div>
+
+                        <div class="journey-card glass-panel p-5 lg:p-8 rounded-2xl transition-colors duration-300">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-cyanAccent/10 border border-cyanAccent/40 flex items-center justify-center text-cyanAccent shrink-0 shadow-cyanGlow">
+                                        <i data-lucide="scan-face" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base lg:text-lg font-bold text-textMain leading-tight">Facial Recognition & IT Projects</h3>
+                                        <p class="text-[10px] lg:text-xs text-cyanAccent font-medium mt-1">Applied Technology & Programming</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 lg:px-3 py-1 rounded-full bg-bgMain border border-cyanAccent/30 text-[9px] lg:text-[11px] font-mono text-cyanAccent shrink-0">
+                                    Practical Project Work
+                                </span>
+                            </div>
+                            <p class="text-xs lg:text-sm text-textSec leading-relaxed mt-3">
+                                Hands-on experience with facial recognition technology, python computer vision, algorithms, and full-stack web development (HTML/CSS/JavaScript).
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass-panel border-t border-bgSec py-6 px-4 lg:px-12 text-center text-[10px] lg:text-xs text-textSec relative z-30">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 lg:gap-4">
+            <div>
+                <span class="text-textMain font-semibold">BOGDAN CIUFU</span> — Portfolio Prototype 1.0
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-3 lg:gap-6 text-[10px] lg:text-[11px]">
+                <span>Ploiești & București</span>
+                <span class="hidden sm:inline">•</span>
+                <a href="tel:0746175643" class="hover:text-cyanAccent transition-colors">0746175643</a>
+                <span>•</span>
+                <a href="mailto:bogdanciufu200402@gmail.com" class="hover:text-cyanAccent transition-colors">bogdanciufu200402@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TAG AUDIO ASCUNS -->
+    <audio id="bg-music" src="./2Pac - All Eyez On Me.mp3" loop></audio>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

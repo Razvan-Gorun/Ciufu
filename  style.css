@@ -1,0 +1,101 @@
+/* ============================================ */
+/* GLOBAL RESET & BASE                          */
+/* ============================================ */
+html, body {
+    background-color: #080D16 !important;
+    color: #F2F6FC !important;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    /* Elimină delay-ul de 300ms la click pe telefoane */
+    touch-action: manipulation; 
+    /* Elimină highlight-ul albastru cand dai tap pe butoane pe mobil */
+    -webkit-tap-highlight-color: transparent; 
+}
+
+/* Fix pentru canvas-urile 3D ca sa se comporte corect pe orice ecran */
+canvas {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    outline: none;
+}
+
+/* ============================================ */
+/* CUSTOM SCROLLBAR                             */
+/* ============================================ */
+::-webkit-scrollbar {
+    width: 6px; /* Putin mai subtire pentru mobil */
+}
+::-webkit-scrollbar-track {
+    background: #080D16;
+}
+::-webkit-scrollbar-thumb {
+    background: #111D2C;
+    border-radius: 4px;
+    border: 1px solid rgba(85, 214, 255, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #55D6FF;
+}
+
+/* ============================================ */
+/* CYAN TEXT GLOW                               */
+/* ============================================ */
+.glow-text {
+    text-shadow: 0 0 16px rgba(85, 214, 255, 0.6);
+}
+
+/* ============================================ */
+/* GLASSMORPHISM PANELS                         */
+/* ============================================ */
+.glass-panel {
+    background: rgba(8, 13, 22, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(85, 214, 255, 0.2);
+}
+
+.glass-panel-active {
+    background: rgba(8, 13, 22, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); /* Adaugat si aici pentru Safari iOS */
+    border: 1px solid rgba(85, 214, 255, 0.65);
+    box-shadow: 0 0 35px rgba(85, 214, 255, 0.25);
+}
+
+/* ============================================ */
+/* AMBIENT SUBTLE PULSE                         */
+/* ============================================ */
+@keyframes subtlePulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+.animate-beam-glow {
+    animation: subtlePulse 4s infinite ease-in-out;
+}
+
+/* ============================================ */
+/* EQUALIZER BARS ANIMATION                     */
+/* ============================================ */
+.eq-bar {
+    width: 3px;
+    background-color: #55D6FF;
+    border-radius: 2px;
+    animation: eqBounce 1s infinite ease-in-out alternate;
+}
+.eq-bar:nth-child(1) { height: 12px; animation-delay: 0.1s; }
+.eq-bar:nth-child(2) { height: 18px; animation-delay: 0.3s; }
+.eq-bar:nth-child(3) { height: 10px; animation-delay: 0.2s; }
+.eq-bar:nth-child(4) { height: 15px; animation-delay: 0.4s; }
+
+@keyframes eqBounce {
+    0% { transform: scaleY(0.3); }
+    100% { transform: scaleY(1.1); }
+}
+
+.paused .eq-bar {
+    animation-play-state: paused;
+    transform: scaleY(0.2);
+}
